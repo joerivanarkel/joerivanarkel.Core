@@ -454,3 +454,5 @@ $RECYCLE.BIN/
 UserSecrets/NuGet.config
 UserSecrets/pushpackage.txt
 pushpackage.txt
+
+/Release
