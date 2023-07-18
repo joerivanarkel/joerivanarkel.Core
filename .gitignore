@@ -453,7 +453,7 @@ $RECYCLE.BIN/
 !.vscode/extensions.json
 UserSecrets/NuGet.config
 UserSecrets/pushpackage.md
-pushpackage.md
+/.publish
 
 /Release
 */nuget.config
