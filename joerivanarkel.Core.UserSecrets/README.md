@@ -7,3 +7,9 @@ This package is a simple wrapper around the [Microsoft.Extensions.Configuration.
 | --- | --- |
 | <i>`UserSecrets.GetSecret(string secretName)`<i> | Returns the value of the secret with the given name. |
 | <i>`UserSecrets.AddSecret(string key, string value)`<i> | Adds a secret with the given key and value. |
+
+## Usage
+The user secrets can be used as follows:
+```csharp
+var secretString = UserSecrets.GetSecret("SecretName");
+```
