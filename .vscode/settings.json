@@ -2,6 +2,8 @@
     "dotnet.defaultSolution": "joerivanarkel.Core.sln",
 
     "material-icon-theme.folders.associations": {
-        "Exception" : "Error"
+        "Exception" : "Error",
+
+        "joerivanarkel.Core.UserSecrets.Test" : "Test",
     },
 }

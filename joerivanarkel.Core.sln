@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "joerivanarkel.Core.Logger",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "joerivanarkel.Core.UserSecrets", "joerivanarkel.Core.UserSecrets\joerivanarkel.Core.UserSecrets.csproj", "{E71166CC-C4E4-40E8-B01D-EF33E9809321}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "joerivanarkel.Core.UserSecrets.Test", "joerivanarkel.Core.UserSecrets.Test\joerivanarkel.Core.UserSecrets.Test.csproj", "{A4C58600-151C-4164-963F-DF8657BB7D22}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{E71166CC-C4E4-40E8-B01D-EF33E9809321}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E71166CC-C4E4-40E8-B01D-EF33E9809321}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E71166CC-C4E4-40E8-B01D-EF33E9809321}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4C58600-151C-4164-963F-DF8657BB7D22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4C58600-151C-4164-963F-DF8657BB7D22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4C58600-151C-4164-963F-DF8657BB7D22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4C58600-151C-4164-963F-DF8657BB7D22}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
