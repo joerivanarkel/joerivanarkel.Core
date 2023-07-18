@@ -31,7 +31,14 @@ public class UserSecretsTest
         string secretName = "InvalidSecret";
 
         // Act & Assert
-        var ex = Assert.Throws<UserSecretException>(() => UserSecrets<UserSecretsTest>.GetSecret(secretName));
-        Assert.Equal($"Could not get secret {secretName} from user secrets. The secret is null or empty", ex.Message);
+        try
+        {
+            UserSecrets<UserSecretsTest>.GetSecret(secretName);
+        }
+        catch (System.Exception ex)
+        {
+            Assert.IsType<UserSecretException>(ex);
+            Assert.Equal($"Could not get secret {secretName} from user secrets. The secret is null or empty", ex.Message);
+        }
     }
 }

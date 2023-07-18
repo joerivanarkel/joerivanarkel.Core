@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using joerivanarkel.Core.Logger.Enum;
 
 namespace joerivanarkel.Core.Logger.FileHandlers.Model;
@@ -25,5 +26,15 @@ public class FileWriteModel
         Extension = "." + fileExtension.ToString().ToLower();
         Location = fileLocation;
         Text = fileText;
+    }
+
+    public bool IsValid()
+    {
+        if (string.IsNullOrEmpty(Name)) throw new ValidationException($"Name, ${Name} is empty");
+        if (string.IsNullOrEmpty(Extension)) throw new ValidationException($"Extension, ${Extension} is empty");
+        if (string.IsNullOrEmpty(Location)) throw new ValidationException($"Location, ${Location} is empty");
+        if (string.IsNullOrEmpty(Text)) throw new ValidationException($"Text, ${Text} is empty");
+
+        return true;
     }
 }

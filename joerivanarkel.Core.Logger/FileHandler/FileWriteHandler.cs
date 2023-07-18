@@ -1,3 +1,4 @@
+using joerivanarkel.Core.Logger.Exception;
 using joerivanarkel.Core.Logger.FileHandlers.Model;
 using joerivanarkel.Core.Logger.Interfaces;
 
@@ -10,7 +11,7 @@ public class FileWriteHandler : BaseFileHandler, IFileWriteHandler
 {
     public bool WriteToFile(FileWriteModel fileWriteModel, bool encryption = false)
     {
-        if (fileWriteModel.Name == string.Empty || fileWriteModel.Extension == string.Empty || fileWriteModel.Extension == string.Empty) { throw new ArgumentNullException("Name, Text or Extension provided is empty"); }
+        fileWriteModel.IsValid();
 
         if (encryption)fileWriteModel.Text = Encrypt(fileWriteModel.Text);
         
@@ -22,7 +23,7 @@ public class FileWriteHandler : BaseFileHandler, IFileWriteHandler
     }
     public bool AppendToFile(FileWriteModel fileWriteModel, Boolean encryption = false)
     {
-        if (fileWriteModel.Name == string.Empty || fileWriteModel.Text == string.Empty || fileWriteModel.Extension == string.Empty) { throw new ArgumentNullException("Name, Text or Extension provided is empty"); }
+        fileWriteModel.IsValid();
 
         if (encryption)
         {

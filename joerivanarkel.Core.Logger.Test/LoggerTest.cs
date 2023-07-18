@@ -27,5 +27,23 @@ public class LoggerTest
         // Assert
         Assert.True(result);
     }
+
+    [Fact]
+    public void ShouldLogToConsole()
+    {
+        // Arrange
+        var FileWriteHandler = A.Fake<IFileWriteHandler>();
+        var logger = new Logger(FileWriteHandler, new LoggerConfiguration { UseConsole = true });
+
+        A.CallTo(() => FileWriteHandler.WriteToFile(A<FileWriteModel>.Ignored, A<bool>.Ignored)).Returns(true);
+        var message = "Test message";
+        var type = LogType.INFO;
+
+        // Act
+        var result = logger.Log(message, type);
+
+        // Assert
+        Assert.True(result);
+    }
         
 }

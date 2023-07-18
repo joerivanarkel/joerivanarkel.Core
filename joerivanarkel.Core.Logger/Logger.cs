@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using joerivanarkel.Core.Logger.Enum;
+using joerivanarkel.Core.Logger.Exception;
 using joerivanarkel.Core.Logger.FileHandlers;
 using joerivanarkel.Core.Logger.FileHandlers.Model;
 using joerivanarkel.Core.Logger.Interfaces;
@@ -33,19 +34,23 @@ public class Logger : ILogger
 
     public bool Log(string message, LogType logType)
     {
+        if (string.IsNullOrEmpty(message)) throw new LoggerException("Message cannot be null or empty");
+
         var time = DateTime.Now.ToString();
         var formattedMessage = LoggerUtils.FormatMessage(message);
+
+        if (string.IsNullOrEmpty(formattedMessage)) throw new LoggerException("Message cannot be null or empty");
+
         var text = $"{time.Replace(" uur", "")}: {logType}: {LoggerUtils.GetCallingClassName()}.cs: {formattedMessage}\n";
 
         _fileWriteHandler.AppendToFile(new FileWriteModel(LogFileName, FileExtension.LOG, _loggerConfiguration.FolderName, text));
+        if (_loggerConfiguration.UseConsole) Console.WriteLine(text);
 
         return true;
     }
 
-    public bool Error(Exception exception)
+    public bool Error(System.Exception exception)
         => Log(exception.Message, LogType.ERROR);
-    
-
 
 
 }
