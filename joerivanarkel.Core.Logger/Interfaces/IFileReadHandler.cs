@@ -1,8 +1,7 @@
 using joerivanarkel.Core.Logger.Enum;
 
-namespace joerivanarkel.Core.Logger.FileHandlers.Interfaces;
+namespace joerivanarkel.Core.Logger.Interfaces;
 
-/// <inheritdoc cref="FileReadHandler"/>
 public interface IFileReadHandler
 {
     ///<summary>

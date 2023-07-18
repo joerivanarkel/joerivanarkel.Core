@@ -1,6 +1,5 @@
 using joerivanarkel.Core.Logger.Enum;
-
-using joerivanarkel.Core.Logger.FileHandlers.Interfaces;
+using joerivanarkel.Core.Logger.Interfaces;
 
 namespace joerivanarkel.Core.Logger.FileHandlers;
 

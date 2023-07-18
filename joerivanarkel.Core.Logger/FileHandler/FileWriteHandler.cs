@@ -1,7 +1,7 @@
-using joerivanarkel.Core.Logger.FileHandlers.Interfaces;
+using joerivanarkel.Core.Logger.FileHandlers.Model;
+using joerivanarkel.Core.Logger.Interfaces;
 
 namespace joerivanarkel.Core.Logger.FileHandlers;
-
 
 /// <summary>
 /// This class handles writing to files.

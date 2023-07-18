@@ -1,4 +1,7 @@
-namespace joerivanarkel.Core.Logger.FileHandlers.Interfaces;
+using joerivanarkel.Core.Logger.FileHandlers;
+using joerivanarkel.Core.Logger.FileHandlers.Model;
+
+namespace joerivanarkel.Core.Logger.Interfaces;
 
 /// <inheritdoc cref="FileWriteHandler"/>
 public interface IFileWriteHandler

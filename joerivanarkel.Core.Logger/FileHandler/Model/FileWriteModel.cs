@@ -1,6 +1,6 @@
 using joerivanarkel.Core.Logger.Enum;
 
-namespace joerivanarkel.Core.Logger.FileHandlers;
+namespace joerivanarkel.Core.Logger.FileHandlers.Model;
 
 /// <summary>
 /// This is a model for the file handlers.
