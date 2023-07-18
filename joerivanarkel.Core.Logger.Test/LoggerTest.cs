@@ -2,6 +2,7 @@ using FakeItEasy;
 using joerivanarkel.Core.Logger;
 using joerivanarkel.Core.Logger.FileHandlers;
 using joerivanarkel.Core.Logger.Interfaces;
+using joerivanarkel.Core.Logger.FileHandlers.Model;
 using Xunit;
 using static joerivanarkel.Core.Logger.Logger;
 

@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
 
         <PackageId>joerivanarkel.Core.Logger</PackageId>
         <Version>1.0.0</Version>
@@ -12,6 +12,5 @@
         <RepositoryUrl>https://github.com/joerivanarkel/joerivanarkel.Core</RepositoryUrl>
         <PackageProjectUrl>https://github.com/joerivanarkel/joerivanarkel.Core</PackageProjectUrl>
         <PackageIcon>icon.png</PackageIcon>
-  </PropertyGroup>
-
+    </PropertyGroup>
 </Project>

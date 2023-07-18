@@ -6,7 +6,7 @@ using joerivanarkel.Core.Logger.Interfaces;
 
 namespace joerivanarkel.Core.Logger;
 
-public class Logger
+public class Logger : ILogger
 {
     public enum LogType
     {
@@ -15,44 +15,37 @@ public class Logger
         INFO
     }
 
-    private string logFileName { get; set; }
+    private string LogFileName { get; set; }
     private readonly IFileWriteHandler _fileWriteHandler;
-    private readonly string _location;
+    private LoggerConfiguration _loggerConfiguration;
+
 
     public Logger() : this(new FileWriteHandler()) {}
-
-    public Logger(FileWriteHandler fileWriteHandler)
+    public Logger(FileWriteHandler fileWriteHandler) : this(fileWriteHandler, new LoggerConfiguration()) {}
+    public Logger(IFileWriteHandler fileWriteHandler, LoggerConfiguration loggerConfiguration)
     {
-        logFileName = $"{DateTime.Now.Day}.{DateTime.Now.Month}.{DateTime.Now.Year}.{DateTime.Now.Hour}.{DateTime.Now.Minute}.{DateTime.Now.Second}";
         _fileWriteHandler = fileWriteHandler;
-        _location = "Logs";
+        _loggerConfiguration = loggerConfiguration;
+
+        LogFileName = $"{DateTime.Now.Day}.{DateTime.Now.Month}.{DateTime.Now.Year}.{DateTime.Now.Hour}.{DateTime.Now.Minute}.{DateTime.Now.Second}";
     }
+
 
     public bool Log(string message, LogType logType)
     {
         var time = DateTime.Now.ToString();
-        var formattedMessage = FormatMessage(message);
-        var text = ($"{time.Replace(" uur", "")}: {logType.ToString()}: {GetCallingClassName()}.cs: {formattedMessage}\n");
+        var formattedMessage = LoggerUtils.FormatMessage(message);
+        var text = $"{time.Replace(" uur", "")}: {logType}: {LoggerUtils.GetCallingClassName()}.cs: {formattedMessage}\n";
 
-        _fileWriteHandler.AppendToFile(new FileWriteModel(logFileName, FileExtension.LOG, _location, text));
+        _fileWriteHandler.AppendToFile(new FileWriteModel(LogFileName, FileExtension.LOG, _loggerConfiguration.FolderName, text));
 
         return true;
     }
 
+    public bool Error(Exception exception)
+        => Log(exception.Message, LogType.ERROR);
+    
 
-    private string FormatMessage(string message)
-    {
-        if (message.Contains('\n')) message = message.Replace('\n', ' ');
-        if (message.Contains('\r')) message = message.Replace('\r', ' ');
 
-        return message;
-    }
 
-    private string GetCallingClassName()
-    {
-        var stackTrace = new StackTrace();
-        var callingClass = stackTrace.GetFrame(2)?.GetMethod()?.DeclaringType?.Name ?? "Unknown";
-
-        return callingClass;
-    }
 }
