@@ -456,3 +456,5 @@ UserSecrets/pushpackage.md
 pushpackage.md
 
 /Release
+*/nuget.config
+.vscode/tasks.json
