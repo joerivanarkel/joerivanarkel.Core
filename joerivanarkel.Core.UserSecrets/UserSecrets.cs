@@ -12,5 +12,23 @@ namespace joerivanarkel.Core.UserSecrets
                 .Build();
             return secretConfig[secretName];
         }
+
+        public static bool AddSecret(string key, string value)
+        {
+            try
+            {
+                var secretConfig = new ConfigurationBuilder()
+                    .AddUserSecrets<T>()
+                    .Build();
+                secretConfig[key] = value;
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+        }
+
     }
 }

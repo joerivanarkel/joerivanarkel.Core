@@ -5,4 +5,5 @@ This package is a simple wrapper around the [Microsoft.Extensions.Configuration.
 ## Classes
 | Class.Method | Description |
 | --- | --- |
-| `UserSecrets.GetSecret(string secretName)` | Returns the value of the secret with the given name. |
+| <u>`UserSecrets.GetSecret(string secretName)`<u> | Returns the value of the secret with the given name. |
+| <u>`UserSecrets.AddSecret(string key, string value)`<u> | Adds a secret with the given key and value. |
