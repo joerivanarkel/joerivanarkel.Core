@@ -1,10 +1,10 @@
 {
-    "dotnet.defaultSolution": "joerivanarkel.Core.sln",
+    "dotnet.defaultSolution": "joerivanarkel.Packages.sln",
 
     "material-icon-theme.folders.associations": {
       "Exception": "Error",
 
-      "joerivanarkel.Core.UserSecrets.Test": "Test",
-      "joerivanarkel.Core.Logger.Test": "Test"
+      "joerivanarkel.UserSecrets.Test": "Test",
+      "joerivanarkel.Logger.Test": "Test"
     },
 }
