@@ -91,7 +91,7 @@ jobs:
               catch {
                 Write-Warning $Error[0]
               }
-
+            }
       - name: Publish to Github Packages
         if: ${{ !startsWith(github.ref, 'refs/heads/main') }} 
         shell: pwsh
