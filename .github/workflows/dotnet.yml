@@ -77,7 +77,7 @@ jobs:
         run: |
             $files = Get-ChildItem "${{ env.NuGetDirectory }}" -Recurse -Include *.nupkg
             foreach ($file in $files) {
-                $newName = $file.Name -replace '\.nupkg$', "-${{ github.run_number }}.nupkg"
+                $newName = $file.Name -replace '\.nupkg$', "-pre${{ github.run_number }}.nupkg"
                 Rename-Item $file.FullName $newName
             }
 
