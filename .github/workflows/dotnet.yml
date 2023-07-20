@@ -74,6 +74,7 @@ jobs:
         uses: actions/setup-dotnet@v3
 
       - name: Rename files
+        shell: pwsh
         if: ${{ !startsWith(github.ref, 'refs/heads/main') }}
         run: |
             $files = Get-ChildItem "${{ env.NuGetDirectory }}" -Recurse -Include *.nupkg
