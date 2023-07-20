@@ -75,5 +75,5 @@ jobs:
       - name: Publish to Github Packages
         run: |
           foreach($file in (Get-ChildItem "${{ env.NuGetDirectory }}" -Recurse -Include *.nupkg)) {
-              dotnet nuget push $file --api-key "${{ secrets.GITHUB_APIKEY }}" --sourcehttps://nuget.pkg.github.com/joerivanarkel/index.json --skip-duplicate
+              dotnet nuget push $file --api-key "${{ secrets.PACKAGES_APIKEY }}" --sourcehttps://nuget.pkg.github.com/joerivanarkel/index.json --skip-duplicate
           }
