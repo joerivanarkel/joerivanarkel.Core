@@ -46,7 +46,7 @@ jobs:
       if: ${{ !startsWith(github.ref, 'refs/heads/main') }}        
       run: |
         find . -name '*.csproj' ! -name '*Test*.csproj' | while read file; do
-            sed -i "s/<\/Version>/-pre${{ github.run_number }}<\/Version>/" "$file"
+            sed -i "s/<\/Version>/-build${{ github.run_number }}<\/Version>/" "$file"
         done
 
     # Install the .NET SDK indicated in the global.json file
