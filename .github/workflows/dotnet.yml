@@ -42,6 +42,13 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Add pre-release version
+      if: ${{ !startsWith(github.ref, 'refs/heads/main') }}        
+      run: |
+        find . -name '*.csproj' ! -name '*Test*.csproj' | while read file; do
+            sed -i "s/<\/Version>/-pre${{ github.run_number }}<\/Version>/" "$file"
+        done
+
     # Install the .NET SDK indicated in the global.json file
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
@@ -72,13 +79,6 @@ jobs:
 
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v3
-
-      - name: Add pre-release version
-        if: ${{ !startsWith(github.ref, 'refs/heads/main') }}        
-        run: |
-          find . -name '*.csproj' ! -name '*Test*.csproj' | while read file; do
-            sed -i "s/<\/Version>/-pre${{ github.run_number }}<\/Version>/" "$file"
-          done
 
       - name: Publish to NuGet
         shell: pwsh
