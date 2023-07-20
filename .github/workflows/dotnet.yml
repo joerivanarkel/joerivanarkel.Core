@@ -2,7 +2,8 @@ name: .NET & Deploy Package
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - '*'
   pull_request:
     branches: [ "main" ]
 
@@ -41,6 +42,13 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Add pre-release version
+      if: ${{ !startsWith(github.ref, 'refs/heads/main') }}        
+      run: |
+        find . -name '*.csproj' ! -name '*Test*.csproj' | while read file; do
+            sed -i "s/<\/Version>/-build${{ github.run_number }}<\/Version>/" "$file"
+        done
+
     # Install the .NET SDK indicated in the global.json file
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
@@ -72,15 +80,6 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v3
 
-      - name: Rename files
-        if: ${{ !startsWith(github.ref, 'refs/heads/main') }}
-        run: |
-            $files = Get-ChildItem "${{ env.NuGetDirectory }}" -Recurse -Include *.nupkg
-            foreach ($file in $files) {
-                $newName = $file.Name -replace '\.nupkg$', "-${{ github.run_number }}.nupkg"
-                Rename-Item $file.FullName $newName
-            }
-
       - name: Publish to NuGet
         shell: pwsh
         run: |
@@ -92,6 +91,13 @@ jobs:
               catch {
                 Write-Warning $Error[0]
               }
+            }
+      - name: Publish to Github Packages
+        if: ${{ startsWith(github.ref, 'refs/heads/main') }} 
+        shell: pwsh
+        run: |
+          $files=Get-ChildItem "${{ env.NuGetDirectory }}" -Recurse -Include *.nupkg
+          foreach($file in $files) {
               try {
                 dotnet nuget push $file --api-key "${{ secrets.PACKAGES_APIKEY }}" --source "https://nuget.pkg.github.com/joerivanarkel/index.json" --skip-duplicate
               }
