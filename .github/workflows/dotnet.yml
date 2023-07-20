@@ -78,13 +78,13 @@ jobs:
           $files=Get-ChildItem "${{ env.NuGetDirectory }}" -Recurse -Include *.nupkg
           foreach($file in $files) {
               try {
-                dotnet nuget push $file --api-key "${{ secrets.NUGET_APIKEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
+                dotnet nuget push $file --api-key "${{ secrets.NUGET_APIKEY }}" --source "https://api.nuget.org/v3/index.json" --skip-duplicate
               }
               catch {
                 Write-Warning $Error[0]
               }
               try {
-                dotnet nuget push $file --api-key "${{ secrets.PACKAGES_APIKEY }}" --sourcehttps://nuget.pkg.github.com/joerivanarkel/index.json --skip-duplicate
+                dotnet nuget push $file --api-key "${{ secrets.PACKAGES_APIKEY }}" --source "https://nuget.pkg.github.com/joerivanarkel/index.json" --skip-duplicate
               }
               catch {
                 Write-Warning $Error[0]
