@@ -93,7 +93,7 @@ jobs:
               }
             }
       - name: Publish to Github Packages
-        if: ${{ !startsWith(github.ref, 'refs/heads/main') }} 
+        if: ${{ startsWith(github.ref, 'refs/heads/main') }} 
         shell: pwsh
         run: |
           $files=Get-ChildItem "${{ env.NuGetDirectory }}" -Recurse -Include *.nupkg
