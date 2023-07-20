@@ -73,6 +73,7 @@ jobs:
         uses: actions/setup-dotnet@v3
 
       - name: Publish to NuGet
+        shell: pwsh
         run: |
           $files=Get-ChildItem "${{ env.NuGetDirectory }}" -Recurse -Include *.nupkg
           foreach($file in $files) {
