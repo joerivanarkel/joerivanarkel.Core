@@ -74,7 +74,7 @@ jobs:
 
       - name: Publish to NuGet
         run: |
-          $files = (Get-ChildItem "${{ env.NuGetDirectory }}" -Recurse -Include *.nupkg)
+          $files = Get-ChildItem "${{ env.NuGetDirectory }}" -Recurse -Include *.nupkg
           foreach($file in $files) {
               dotnet nuget push $file --api-key "${{ secrets.NUGET_APIKEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
               dotnet nuget push $file --api-key "${{ secrets.PACKAGES_APIKEY }}" --sourcehttps://nuget.pkg.github.com/joerivanarkel/index.json --skip-duplicate
