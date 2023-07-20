@@ -1,4 +1,4 @@
-# joerivanarkel.UserSecrets
+# joerivanarkel.Packages
 
 This repository contains packages that I use in my projects. The packages are available on [NuGet](https://www.nuget.org/profiles/joerivanarkel) and Github Packages.
 

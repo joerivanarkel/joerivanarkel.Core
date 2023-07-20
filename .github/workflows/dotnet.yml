@@ -72,6 +72,15 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v3
 
+      - name: Rename files
+        if: ${{ !startsWith(github.ref, 'refs/heads/main') }}
+        run: |
+            $files = Get-ChildItem "${{ env.NuGetDirectory }}" -Recurse -Include *.nupkg
+            foreach ($file in $files) {
+                $newName = $file.Name -replace '\.nupkg$', "-${{ github.run_number }}.nupkg"
+                Rename-Item $file.FullName $newName
+            }
+
       - name: Publish to NuGet
         shell: pwsh
         run: |
