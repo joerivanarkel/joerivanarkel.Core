@@ -73,15 +73,13 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v3
 
-      - name: Rename files
+      - name: Add pre-release version
         shell: pwsh
-        if: ${{ !startsWith(github.ref, 'refs/heads/main') }}
+        if: ${{ !startsWith(github.ref, 'refs/heads/main') }}        
         run: |
-            $files = Get-ChildItem "${{ env.NuGetDirectory }}" -Recurse -Include *.nupkg
-            foreach ($file in $files) {
-                $newName = $file.Name -replace '\.nupkg$', "-pre${{ github.run_number }}.nupkg"
-                Rename-Item $file.FullName $newName
-            }
+          find . -name '*.csproj' ! -name '*Test*.csproj' | while read file; do
+            sed -i "s/<\/Version>/-pre${{ github.run_number }}<\/Version>/" "$file"
+          done
 
       - name: Publish to NuGet
         shell: pwsh
