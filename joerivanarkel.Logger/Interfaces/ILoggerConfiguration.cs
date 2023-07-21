@@ -1,9 +1,9 @@
 namespace joerivanarkel.Logger.Interfaces;
 
-internal interface ILoggerConfiguration
+public interface ILoggerConfiguration
 {
     string FolderName { get; set; }
-
+    
     bool UseConsole { get; set; }
     bool UseFile { get; set; }
 }

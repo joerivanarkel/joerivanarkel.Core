@@ -9,7 +9,7 @@ public interface ILogger
         INFO
     }
 
-    LoggerConfiguration LoggerConfiguration { get; set; }
+    ILoggerConfiguration LoggerConfiguration { get; set; }
 
     bool Log(string message, Logger.LogType logType);
     bool Error(System.Exception exception);

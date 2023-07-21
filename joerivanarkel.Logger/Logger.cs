@@ -23,17 +23,19 @@ public class Logger : ILogger
     /// <summary>
     /// The configuration options for the logger.
     /// </summary>
-    public LoggerConfiguration LoggerConfiguration { get; set; }
+    public ILoggerConfiguration LoggerConfiguration { get; set; }
 
     private string LogFileName { get; set; }
     
     private readonly IFileWriteHandler _fileWriteHandler;
 
     public Logger() : this(new FileWriteHandler()) {}
-    public Logger(IFileWriteHandler fileWriteHandler)
+    public Logger(IFileWriteHandler fileWriteHandler) : this(fileWriteHandler, new LoggerConfiguration()) {}
+
+    public Logger(IFileWriteHandler fileWriteHandler, ILoggerConfiguration loggerConfiguration)
     {
         _fileWriteHandler = fileWriteHandler;
-        LoggerConfiguration = new LoggerConfiguration();
+        LoggerConfiguration = loggerConfiguration;
 
         LogFileName = $"{DateTime.Now.Day}.{DateTime.Now.Month}.{DateTime.Now.Year}.{DateTime.Now.Hour}.{DateTime.Now.Minute}.{DateTime.Now.Second}";
     }
@@ -56,8 +58,20 @@ public class Logger : ILogger
 
         var text = $"{time.Replace(" uur", "")}: {logType}: {MessageFormatter.GetCallingClassName()}.cs: {formattedMessage}\n";
 
-        _fileWriteHandler.AppendToFile(new FileWriteModel(LogFileName, FileExtension.LOG, LoggerConfiguration.FolderName, text));
-        if (LoggerConfiguration.UseConsole) Console.WriteLine(text);
+        return WriteToTarget(text);
+    }
+
+    private bool WriteToTarget(string text)
+    {
+        if (LoggerConfiguration.UseConsole) 
+        {
+            Console.WriteLine(text);
+        }
+
+        if (LoggerConfiguration.UseFile)
+        {
+            _fileWriteHandler.AppendToFile(new FileWriteModel(LogFileName, FileExtension.LOG, LoggerConfiguration.FolderName, text));
+        }
 
         return true;
     }

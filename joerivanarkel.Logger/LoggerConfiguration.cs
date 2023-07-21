@@ -11,6 +11,8 @@ public class LoggerConfiguration : ILoggerConfiguration
     /// The name of the folder where the logs will be stored.
     /// </summary>
     public string FolderName { get; set; } = ".logs";
+    
+    
     /// <summary>
     /// If the logger should use the console.
     /// </summary>
