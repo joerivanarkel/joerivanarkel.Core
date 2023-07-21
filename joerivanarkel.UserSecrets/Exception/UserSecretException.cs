@@ -2,7 +2,7 @@ namespace joerivanarkel.UserSecrets.Exception;
 
 using System;
 
-internal class UserSecretException : Exception
+public class UserSecretException : Exception
 {
-    internal UserSecretException(string message) : base(message) {}
+    public UserSecretException(string message) : base(message) {}
 }
