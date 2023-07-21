@@ -43,3 +43,68 @@ These packages vary from simple wrappers around existing packages to custom pack
 | [joerivanarkel.Logger](./joerivanarkel.Logger/README.md) | [![joerivanarkel.Logger](https://img.shields.io/nuget/v/joerivanarkel.Logger.svg)](https://www.nuget.org/packages/joerivanarkel.Logger/) | This package is a custom logger that logs to a file. |
 | [joerivanarkel.FileHandler](./joerivanarkel.FileHandler/README.md) | [![joerivanarkel.FileHandler](https://img.shields.io/nuget/v/joerivanarkel.FileHandler.svg)](https://www.nuget.org/packages/joerivanarkel.FileHandler/) | This package which handles read and write operations to files. |
 
+## Solution Structure
+<i>As of 22 of July 2023</i><br>
+The solution has a number of projects. For each package, there is a project that contains the package. In addition, there is a project that contains the tests for the package. The package has a relation with the Solution entity. The solution structure is shown below.
+
+```mermaid
+classDiagram
+    class Solution {
+    }
+
+    Solution --> UserSecrets
+    Solution --> Logger
+    Solution --> FileHandler
+
+    class UserSecrets {
+        class UserSecrets
+
+        exception UserSecretsException
+    }
+
+    class UserSecretsTest {
+        class UserSecretsTest
+    }
+
+    UserSecrets --> UserSecretsTest
+
+
+    class Logger {
+        class Logger
+        class LoggerConfiguration
+        class MessageFormatter
+
+        interface ILogger
+        interface ILoggerConfiguration
+
+        enum LogType
+
+        exception LoggerException
+    }
+
+    class LoggerTest {
+        class LoggerTest
+    }
+
+    Logger --> LoggerTest
+
+    class FileHandler {
+        class BaseFileHandler
+        class FileReadHandler
+        class FileWriteHandler
+        class FileWriteModel
+
+        interface IFileReadHandler
+        interface IFileWriteHandler
+
+        enum FileExtension
+
+        exception FileHandlerException
+    }
+
+    class FileHandlerTest {
+        class FileHandlerTest
+    }
+
+    FileHandler --> FileHandlerTest
+```
