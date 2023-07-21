@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using joerivanarkel.Logger.Enum;
+using joerivanarkel.FileHandler.Enum;
 
-namespace joerivanarkel.Logger.FileHandlers.Model;
+namespace joerivanarkel.FileHandler.Model;
 
 /// <summary>
 /// This is a model for the file handlers.

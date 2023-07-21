@@ -1,6 +1,6 @@
-using joerivanarkel.Logger.Enum;
+using joerivanarkel.FileHandler.Enum;
 
-namespace joerivanarkel.Logger.FileHandlers;
+namespace joerivanarkel.FileHandler;
 
 /// <summary>
 /// This class is a base class for all file handlers.

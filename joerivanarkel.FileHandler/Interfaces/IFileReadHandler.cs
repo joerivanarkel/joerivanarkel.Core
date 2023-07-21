@@ -1,6 +1,6 @@
-using joerivanarkel.Logger.Enum;
+using joerivanarkel.FileHandler.Enum;
 
-namespace joerivanarkel.Logger.Interfaces;
+namespace joerivanarkel.FileHandler.Interfaces;
 
 public interface IFileReadHandler
 {
