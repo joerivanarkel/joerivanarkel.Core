@@ -10,6 +10,9 @@ namespace joerivanarkel.Logger;
 
 public class Logger : ILogger
 {
+    /// <summary>
+    /// The type of log, which can be ERROR, WARNING or INFO.
+    /// </summary>
     public enum LogType
     {
         ERROR,
@@ -17,41 +20,74 @@ public class Logger : ILogger
         INFO
     }
 
-    private string LogFileName { get; set; }
-    private readonly IFileWriteHandler _fileWriteHandler;
-    private readonly LoggerConfiguration _loggerConfiguration;
+    /// <summary>
+    /// The configuration options for the logger.
+    /// </summary>
+    public ILoggerConfiguration LoggerConfiguration { get; set; }
 
+    private string LogFileName { get; set; }
+    
+    private readonly IFileWriteHandler _fileWriteHandler;
 
     public Logger() : this(new FileWriteHandler()) {}
-    public Logger(FileWriteHandler fileWriteHandler) : this(fileWriteHandler, new LoggerConfiguration()) {}
-    public Logger(IFileWriteHandler fileWriteHandler, LoggerConfiguration loggerConfiguration)
+    public Logger(IFileWriteHandler fileWriteHandler) : this(fileWriteHandler, new LoggerConfiguration()) {}
+    public Logger(ILoggerConfiguration loggerConfiguration) : this(new FileWriteHandler(), loggerConfiguration) {}
+
+    public Logger(IFileWriteHandler fileWriteHandler, ILoggerConfiguration loggerConfiguration)
     {
         _fileWriteHandler = fileWriteHandler;
-        _loggerConfiguration = loggerConfiguration;
+        LoggerConfiguration = loggerConfiguration;
 
         LogFileName = $"{DateTime.Now.Day}.{DateTime.Now.Month}.{DateTime.Now.Year}.{DateTime.Now.Hour}.{DateTime.Now.Minute}.{DateTime.Now.Second}";
     }
 
-
+    /// <summary>
+    /// Logs a message
+    /// </summary>
+    /// <param name="message">The message to log</param>
+    /// <param name="logType">INFO, WARNING or ERROR</param>
+    /// <returns>True if the message was logged successfully</returns>
+    /// <exception cref="LoggerException">Thrown when the message is null or empty</exception>
     public bool Log(string message, LogType logType)
     {
         if (string.IsNullOrEmpty(message)) throw new LoggerException("Message cannot be null or empty");
 
         var time = DateTime.Now.ToString();
-        var formattedMessage = LoggerUtils.FormatMessage(message);
+        var formattedMessage = MessageFormatter.FormatMessage(message);
 
         if (string.IsNullOrEmpty(formattedMessage)) throw new LoggerException("Message cannot be null or empty");
 
-        var text = $"{time.Replace(" uur", "")}: {logType}: {LoggerUtils.GetCallingClassName()}.cs: {formattedMessage}\n";
+        var text = $"{time.Replace(" uur", "")}: {logType}: {MessageFormatter.GetCallingClassName()}.cs: {formattedMessage}\n";
 
-        _fileWriteHandler.AppendToFile(new FileWriteModel(LogFileName, FileExtension.LOG, _loggerConfiguration.FolderName, text));
-        if (_loggerConfiguration.UseConsole) Console.WriteLine(text);
+        return WriteToTarget(text);
+    }
+
+    private bool WriteToTarget(string text)
+    {
+        if (LoggerConfiguration.UseConsole) 
+        {
+            Console.WriteLine(text);
+        }
+
+        if (LoggerConfiguration.UseFile)
+        {
+            _fileWriteHandler.AppendToFile(new FileWriteModel(LogFileName, FileExtension.LOG, LoggerConfiguration.FolderName, text));
+        }
 
         return true;
     }
 
+    /// <summary>
+    /// Logs an exception
+    /// </summary>
+    /// <param name="exception">The exception to log</param>
+    /// <returns>True if the exception was logged successfully</returns>
+    /// <exception cref="LoggerException">Thrown when the exception is null or empty</exception>
     public bool Error(System.Exception exception)
-        => Log(exception.Message, LogType.ERROR);
+    {
+        var result = Log(exception.Message, LogType.ERROR);
+        if (exception.InnerException != null) result = Log(exception.InnerException.Message, LogType.ERROR);
 
-
+        return result;
+    }
 }

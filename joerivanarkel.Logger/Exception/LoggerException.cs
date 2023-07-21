@@ -2,7 +2,7 @@ namespace joerivanarkel.Logger.Exception;
 
 using System;
 
-public class LoggerException : Exception
+internal class LoggerException : Exception
 {
-    public LoggerException(string message) : base(message) { }
+    internal LoggerException(string message) : base(message) { }
 }
