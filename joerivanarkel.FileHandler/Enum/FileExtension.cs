@@ -1,4 +1,4 @@
-namespace joerivanarkel.Logger.Enum;
+namespace joerivanarkel.FileHandler.Enum;
 
 /// <summary>
 /// This enum contains all useable file extensions.

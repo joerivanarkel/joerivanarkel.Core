@@ -5,6 +5,7 @@
       "Exception": "Error",
 
       "joerivanarkel.UserSecrets.Test": "Test",
-      "joerivanarkel.Logger.Test": "Test"
+      "joerivanarkel.Logger.Test": "Test",
+      "joerivanarkel.FileHandler.Test": "Test",
     },
 }

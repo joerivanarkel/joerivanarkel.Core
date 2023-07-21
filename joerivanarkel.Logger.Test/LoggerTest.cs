@@ -1,8 +1,9 @@
 using FakeItEasy;
 using joerivanarkel.Logger;
-using joerivanarkel.Logger.FileHandlers;
+using joerivanarkel.FileHandler;
 using joerivanarkel.Logger.Interfaces;
-using joerivanarkel.Logger.FileHandlers.Model;
+using joerivanarkel.FileHandler.Model;
+using joerivanarkel.FileHandler.Interfaces;
 using joerivanarkel.Logger.Exception;
 using Xunit;
 using static joerivanarkel.Logger.Logger;

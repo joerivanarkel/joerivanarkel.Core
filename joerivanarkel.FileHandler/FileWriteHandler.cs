@@ -1,8 +1,8 @@
-using joerivanarkel.Logger.Exception;
-using joerivanarkel.Logger.FileHandlers.Model;
-using joerivanarkel.Logger.Interfaces;
+using joerivanarkel.FileHandler.Exception;
+using joerivanarkel.FileHandler.Model;
+using joerivanarkel.FileHandler.Interfaces;
 
-namespace joerivanarkel.Logger.FileHandlers;
+namespace joerivanarkel.FileHandler;
 
 /// <summary>
 /// This class handles writing to files.

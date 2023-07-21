@@ -1,9 +1,10 @@
 ﻿using System.Diagnostics;
-using joerivanarkel.Logger.Enum;
 using joerivanarkel.Logger.Exception;
-using joerivanarkel.Logger.FileHandlers;
-using joerivanarkel.Logger.FileHandlers.Model;
 using joerivanarkel.Logger.Interfaces;
+using joerivanarkel.FileHandler.Model;
+using joerivanarkel.FileHandler;
+using joerivanarkel.FileHandler.Enum;
+using joerivanarkel.FileHandler.Interfaces;
 
 namespace joerivanarkel.Logger;
 
