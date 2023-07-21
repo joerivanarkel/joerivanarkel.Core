@@ -1,8 +1,8 @@
-using joerivanarkel.Logger.Enum;
-using joerivanarkel.Logger.Exception;
-using joerivanarkel.Logger.Interfaces;
+using joerivanarkel.FileHandler.Enum;
+using joerivanarkel.FileHandler.Exception;
+using joerivanarkel.FileHandler.Interfaces;
 
-namespace joerivanarkel.Logger.FileHandlers;
+namespace joerivanarkel.FileHandler.FileHandlers;
 
 /// <summary>
 /// This class handles reading files.

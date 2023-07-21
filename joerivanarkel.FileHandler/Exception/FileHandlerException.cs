@@ -1,4 +1,4 @@
-namespace joerivanarkel.Logger.Exception;
+namespace joerivanarkel.FileHandler.Exception;
 
 using System;
 
