@@ -31,6 +31,7 @@ public class Logger : ILogger
 
     public Logger() : this(new FileWriteHandler()) {}
     public Logger(IFileWriteHandler fileWriteHandler) : this(fileWriteHandler, new LoggerConfiguration()) {}
+    public Logger(ILoggerConfiguration loggerConfiguration) : this(new FileWriteHandler(), loggerConfiguration) {}
 
     public Logger(IFileWriteHandler fileWriteHandler, ILoggerConfiguration loggerConfiguration)
     {
