@@ -4,6 +4,7 @@ using joerivanarkel.Logger.Interfaces;
 using joerivanarkel.FileHandler.Model;
 using joerivanarkel.FileHandler;
 using joerivanarkel.FileHandler.Enum;
+using joerivanarkel.FileHandler.Interfaces;
 
 namespace joerivanarkel.Logger;
 
@@ -17,13 +18,13 @@ public class Logger : ILogger
     }
 
     private string LogFileName { get; set; }
-    private readonly FileWriteHandler _fileWriteHandler;
+    private readonly IFileWriteHandler _fileWriteHandler;
     private readonly LoggerConfiguration _loggerConfiguration;
 
 
     public Logger() : this(new FileWriteHandler()) {}
     public Logger(FileWriteHandler fileWriteHandler) : this(fileWriteHandler, new LoggerConfiguration()) {}
-    public Logger(FileWriteHandler fileWriteHandler, LoggerConfiguration loggerConfiguration)
+    public Logger(IFileWriteHandler fileWriteHandler, LoggerConfiguration loggerConfiguration)
     {
         _fileWriteHandler = fileWriteHandler;
         _loggerConfiguration = loggerConfiguration;

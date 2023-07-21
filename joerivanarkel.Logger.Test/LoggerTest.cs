@@ -3,6 +3,7 @@ using joerivanarkel.Logger;
 using joerivanarkel.FileHandler;
 using joerivanarkel.Logger.Interfaces;
 using joerivanarkel.FileHandler.Model;
+using joerivanarkel.FileHandler.Interfaces;
 using joerivanarkel.Logger.Exception;
 using Xunit;
 using static joerivanarkel.Logger.Logger;
@@ -15,7 +16,7 @@ public class LoggerTest
     public void ShouldLog()
     {
         // Arrange
-        var FileWriteHandler = A.Fake<FileWriteHandler>();
+        var FileWriteHandler = A.Fake<IFileWriteHandler>();
         var logger = new Logger();
 
         A.CallTo(() => FileWriteHandler.WriteToFile(A<FileWriteModel>.Ignored, A<bool>.Ignored)).Returns(true);
@@ -33,7 +34,7 @@ public class LoggerTest
     public void ShouldLogToConsole()
     {
         // Arrange
-        var FileWriteHandler = A.Fake<FileWriteHandler>();
+        var FileWriteHandler = A.Fake<IFileWriteHandler>();
         var logger = new Logger(FileWriteHandler, new LoggerConfiguration { UseConsole = true });
 
         A.CallTo(() => FileWriteHandler.WriteToFile(A<FileWriteModel>.Ignored, A<bool>.Ignored)).Returns(true);
@@ -53,7 +54,7 @@ public class LoggerTest
         try
         {
             // Arrange
-            var FileWriteHandler = A.Fake<FileWriteHandler>();
+            var FileWriteHandler = A.Fake<IFileWriteHandler>();
             var logger = new Logger();
 
             A.CallTo(() => FileWriteHandler.WriteToFile(A<FileWriteModel>.Ignored, A<bool>.Ignored)).Returns(false);
