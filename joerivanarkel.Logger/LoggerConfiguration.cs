@@ -15,4 +15,8 @@ public class LoggerConfiguration : ILoggerConfiguration
     /// If the logger should use the console.
     /// </summary>
     public bool UseConsole { get; set; } = false;
+    /// <summary>
+    /// If the logger should use a file.
+    /// </summary>
+    public bool UseFile { get; set; } = true;
 }
