@@ -21,4 +21,8 @@
         <None Include=".\icon.png" Pack="true" PackagePath="\" />
         <None Include=".\README.md" Pack="true" PackagePath="\" />
     </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\joerivanarkel.FileHandler\joerivanarkel.FileHandler.csproj" />
+    </ItemGroup>
 </Project>

@@ -2,7 +2,7 @@ using joerivanarkel.FileHandler.Exception;
 using joerivanarkel.FileHandler.Model;
 using joerivanarkel.FileHandler.Interfaces;
 
-namespace joerivanarkel.FileHandler.FileHandlers;
+namespace joerivanarkel.FileHandler;
 
 /// <summary>
 /// This class handles writing to files.

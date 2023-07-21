@@ -2,7 +2,7 @@ using joerivanarkel.FileHandler.Enum;
 using joerivanarkel.FileHandler.Exception;
 using joerivanarkel.FileHandler.Interfaces;
 
-namespace joerivanarkel.FileHandler.FileHandlers;
+namespace joerivanarkel.FileHandler;
 
 /// <summary>
 /// This class handles reading files.

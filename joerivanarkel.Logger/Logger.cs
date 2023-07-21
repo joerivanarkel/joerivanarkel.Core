@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics;
-using joerivanarkel.Logger.Enum;
 using joerivanarkel.Logger.Exception;
-using joerivanarkel.Logger.FileHandlers;
-using joerivanarkel.Logger.FileHandlers.Model;
 using joerivanarkel.Logger.Interfaces;
+using joerivanarkel.FileHandler.Model;
+using joerivanarkel.FileHandler;
+using joerivanarkel.FileHandler.Enum;
 
 namespace joerivanarkel.Logger;
 
@@ -17,13 +17,13 @@ public class Logger : ILogger
     }
 
     private string LogFileName { get; set; }
-    private readonly IFileWriteHandler _fileWriteHandler;
+    private readonly FileWriteHandler _fileWriteHandler;
     private LoggerConfiguration _loggerConfiguration;
 
 
     public Logger() : this(new FileWriteHandler()) {}
     public Logger(FileWriteHandler fileWriteHandler) : this(fileWriteHandler, new LoggerConfiguration()) {}
-    public Logger(IFileWriteHandler fileWriteHandler, LoggerConfiguration loggerConfiguration)
+    public Logger(FileWriteHandler fileWriteHandler, LoggerConfiguration loggerConfiguration)
     {
         _fileWriteHandler = fileWriteHandler;
         _loggerConfiguration = loggerConfiguration;
