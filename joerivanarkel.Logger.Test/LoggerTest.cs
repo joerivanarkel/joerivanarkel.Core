@@ -19,7 +19,7 @@ public class LoggerTest
         var FileWriteHandler = A.Fake<IFileWriteHandler>();
         var logger = new Logger();
 
-        A.CallTo(() => FileWriteHandler.WriteToFile(A<FileWriteModel>.Ignored, A<bool>.Ignored)).Returns(true);
+        A.CallTo(() => FileWriteHandler.WriteToFile(A<FileWriteModel>.Ignored)).Returns(true);
         var message = "Test message";
         var type = LogType.INFO;
 
@@ -37,7 +37,7 @@ public class LoggerTest
         var FileWriteHandler = A.Fake<IFileWriteHandler>();
         var logger = new Logger(FileWriteHandler);
 
-        A.CallTo(() => FileWriteHandler.WriteToFile(A<FileWriteModel>.Ignored, A<bool>.Ignored)).Returns(true);
+        A.CallTo(() => FileWriteHandler.WriteToFile(A<FileWriteModel>.Ignored)).Returns(true);
         var message = "Test message";
         var type = LogType.INFO;
 
@@ -57,7 +57,7 @@ public class LoggerTest
             var FileWriteHandler = A.Fake<IFileWriteHandler>();
             var logger = new Logger();
 
-            A.CallTo(() => FileWriteHandler.WriteToFile(A<FileWriteModel>.Ignored, A<bool>.Ignored)).Returns(false);
+            A.CallTo(() => FileWriteHandler.WriteToFile(A<FileWriteModel>.Ignored)).Returns(false);
             var message = "";
             var type = LogType.INFO;
             // Act
