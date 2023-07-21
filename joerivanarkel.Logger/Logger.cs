@@ -18,15 +18,15 @@ public class Logger : ILogger
 
     private string LogFileName { get; set; }
     private readonly IFileWriteHandler _fileWriteHandler;
-    private LoggerConfiguration _loggerConfiguration;
+
+    public LoggerConfiguration _loggerConfiguration;
 
 
     public Logger() : this(new FileWriteHandler()) {}
-    public Logger(FileWriteHandler fileWriteHandler) : this(fileWriteHandler, new LoggerConfiguration()) {}
-    public Logger(IFileWriteHandler fileWriteHandler, LoggerConfiguration loggerConfiguration)
+    public Logger(IFileWriteHandler fileWriteHandler)
     {
         _fileWriteHandler = fileWriteHandler;
-        _loggerConfiguration = loggerConfiguration;
+        _loggerConfiguration = new LoggerConfiguration();
 
         LogFileName = $"{DateTime.Now.Day}.{DateTime.Now.Month}.{DateTime.Now.Year}.{DateTime.Now.Hour}.{DateTime.Now.Minute}.{DateTime.Now.Second}";
     }

@@ -34,7 +34,7 @@ public class LoggerTest
     {
         // Arrange
         var FileWriteHandler = A.Fake<IFileWriteHandler>();
-        var logger = new Logger(FileWriteHandler, new LoggerConfiguration { UseConsole = true });
+        var logger = new Logger(FileWriteHandler);
 
         A.CallTo(() => FileWriteHandler.WriteToFile(A<FileWriteModel>.Ignored, A<bool>.Ignored)).Returns(true);
         var message = "Test message";
