@@ -18,7 +18,7 @@ public class Logger : ILogger
 
     private string LogFileName { get; set; }
     private readonly FileWriteHandler _fileWriteHandler;
-    private LoggerConfiguration _loggerConfiguration;
+    private readonly LoggerConfiguration _loggerConfiguration;
 
 
     public Logger() : this(new FileWriteHandler()) {}
