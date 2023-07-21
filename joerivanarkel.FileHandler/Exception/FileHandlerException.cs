@@ -2,7 +2,7 @@ namespace joerivanarkel.FileHandler.Exception;
 
 using System;
 
-public class FileHandlerException : Exception
+internal class FileHandlerException : Exception
 {
-    public FileHandlerException(string message) : base(message) { }
+    internal FileHandlerException(string message) : base(message) { }
 }
