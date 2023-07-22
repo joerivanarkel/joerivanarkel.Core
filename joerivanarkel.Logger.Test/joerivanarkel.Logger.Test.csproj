@@ -26,6 +26,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\joerivanarkel.Logger\joerivanarkel.Logger.csproj" />
+        <ProjectReference Include="..\joerivanarkel.FileHandler\joerivanarkel.FileHandler.csproj" />
     </ItemGroup>
 
 </Project>

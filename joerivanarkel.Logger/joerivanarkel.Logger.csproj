@@ -8,7 +8,7 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 
         <PackageId>joerivanarkel.Logger</PackageId>
-        <Version>1.0.3</Version>
+        <Version>1.0.4</Version>
         <Authors>Joeri van Arkel</Authors>
         <Company>vanarkel</Company>
         <RepositoryUrl>
@@ -20,5 +20,9 @@
     <ItemGroup>
         <None Include=".\icon.png" Pack="true" PackagePath="\" />
         <None Include=".\README.md" Pack="true" PackagePath="\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\joerivanarkel.FileHandler\joerivanarkel.FileHandler.csproj" />
     </ItemGroup>
 </Project>

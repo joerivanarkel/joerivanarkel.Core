@@ -1,8 +1,9 @@
 using FakeItEasy;
 using joerivanarkel.Logger;
-using joerivanarkel.Logger.FileHandlers;
+using joerivanarkel.FileHandler;
 using joerivanarkel.Logger.Interfaces;
-using joerivanarkel.Logger.FileHandlers.Model;
+using joerivanarkel.FileHandler.Model;
+using joerivanarkel.FileHandler.Interfaces;
 using joerivanarkel.Logger.Exception;
 using Xunit;
 using static joerivanarkel.Logger.Logger;
@@ -18,7 +19,7 @@ public class LoggerTest
         var FileWriteHandler = A.Fake<IFileWriteHandler>();
         var logger = new Logger();
 
-        A.CallTo(() => FileWriteHandler.WriteToFile(A<FileWriteModel>.Ignored, A<bool>.Ignored)).Returns(true);
+        A.CallTo(() => FileWriteHandler.WriteToFile(A<FileWriteModel>.Ignored)).Returns(true);
         var message = "Test message";
         var type = LogType.INFO;
 
@@ -34,9 +35,9 @@ public class LoggerTest
     {
         // Arrange
         var FileWriteHandler = A.Fake<IFileWriteHandler>();
-        var logger = new Logger(FileWriteHandler, new LoggerConfiguration { UseConsole = true });
+        var logger = new Logger(FileWriteHandler);
 
-        A.CallTo(() => FileWriteHandler.WriteToFile(A<FileWriteModel>.Ignored, A<bool>.Ignored)).Returns(true);
+        A.CallTo(() => FileWriteHandler.WriteToFile(A<FileWriteModel>.Ignored)).Returns(true);
         var message = "Test message";
         var type = LogType.INFO;
 
@@ -56,7 +57,7 @@ public class LoggerTest
             var FileWriteHandler = A.Fake<IFileWriteHandler>();
             var logger = new Logger();
 
-            A.CallTo(() => FileWriteHandler.WriteToFile(A<FileWriteModel>.Ignored, A<bool>.Ignored)).Returns(false);
+            A.CallTo(() => FileWriteHandler.WriteToFile(A<FileWriteModel>.Ignored)).Returns(false);
             var message = "";
             var type = LogType.INFO;
             // Act

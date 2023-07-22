@@ -1,19 +1,25 @@
-using joerivanarkel.Logger.Exception;
-using joerivanarkel.Logger.FileHandlers.Model;
-using joerivanarkel.Logger.Interfaces;
+using joerivanarkel.FileHandler.Exception;
+using joerivanarkel.FileHandler.Model;
+using joerivanarkel.FileHandler.Interfaces;
 
-namespace joerivanarkel.Logger.FileHandlers;
+namespace joerivanarkel.FileHandler;
 
 /// <summary>
 /// This class handles writing to files.
 /// </summary>
 public class FileWriteHandler : BaseFileHandler, IFileWriteHandler
 {
-    public bool WriteToFile(FileWriteModel fileWriteModel, bool encryption = false)
+    /// <summary>
+    /// Writes text to a file.
+    /// </summary>
+    /// <param name="fileWriteModel">The file write model</param>
+    /// <returns>True if the text was written successfully</returns>
+    /// <exception cref="FileHandlerException">Thrown when the name is null or empty</exception>
+    /// <exception cref="FileHandlerException">Thrown when the location is null or empty</exception>
+    /// <exception cref="FileHandlerException">Thrown when the text is null or empty</exception>
+    public bool WriteToFile(FileWriteModel fileWriteModel)
     {
         fileWriteModel.IsValid();
-
-        if (encryption)fileWriteModel.Text = Encrypt(fileWriteModel.Text);
         
         CreateFolder(fileWriteModel.Location);
 
@@ -21,25 +27,24 @@ public class FileWriteHandler : BaseFileHandler, IFileWriteHandler
 
         return result;
     }
-    public bool AppendToFile(FileWriteModel fileWriteModel, Boolean encryption = false)
+
+    /// <summary>
+    /// Appends text to a file.
+    /// </summary>
+    /// <param name="fileWriteModel">The file write model</param>
+    /// <returns>True if the text was appended successfully</returns>
+    /// <exception cref="FileHandlerException">Thrown when the name is null or empty</exception>
+    /// <exception cref="FileHandlerException">Thrown when the location is null or empty</exception>
+    /// <exception cref="FileHandlerException">Thrown when the text is null or empty</exception>
+    public bool AppendToFile(FileWriteModel fileWriteModel)
     {
         fileWriteModel.IsValid();
-
-        if (encryption)
-        {
-            fileWriteModel.Text = Encrypt(fileWriteModel.Text);
-        }
 
         CreateFolder(fileWriteModel.Location);
 
         var result = AppendWrite(fileWriteModel).Result;
 
         return result;
-    }
-
-    private string Encrypt(string text)
-    {
-        return text += " This should be encrypted.";
     }
 
     private void CreateFolder(string location)

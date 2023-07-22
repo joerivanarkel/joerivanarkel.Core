@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "joerivanarkel.UserSecrets.T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "joerivanarkel.Logger.Test", "joerivanarkel.Logger.Test\joerivanarkel.Logger.Test.csproj", "{06C390BA-B8C1-4397-8A0D-C95886AFD3DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "joerivanarkel.FileHandler", "joerivanarkel.FileHandler\joerivanarkel.FileHandler.csproj", "{E33B4C92-EAF2-4533-B60B-7CB7FC8A3EF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "joerivanarkel.FileHandler.Test", "joerivanarkel.FileHandler.Test\joerivanarkel.FileHandler.Test.csproj", "{50888FC1-DEA9-4517-83C6-AC95C85611AE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{06C390BA-B8C1-4397-8A0D-C95886AFD3DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06C390BA-B8C1-4397-8A0D-C95886AFD3DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06C390BA-B8C1-4397-8A0D-C95886AFD3DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E33B4C92-EAF2-4533-B60B-7CB7FC8A3EF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E33B4C92-EAF2-4533-B60B-7CB7FC8A3EF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E33B4C92-EAF2-4533-B60B-7CB7FC8A3EF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E33B4C92-EAF2-4533-B60B-7CB7FC8A3EF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50888FC1-DEA9-4517-83C6-AC95C85611AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50888FC1-DEA9-4517-83C6-AC95C85611AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50888FC1-DEA9-4517-83C6-AC95C85611AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50888FC1-DEA9-4517-83C6-AC95C85611AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
