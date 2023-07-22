@@ -57,7 +57,7 @@ public class Logger : ILogger
 
         if (string.IsNullOrEmpty(formattedMessage)) throw new LoggerException("Message cannot be null or empty");
 
-        var text = $"{time.Replace(" uur", "")}: {logType}: {MessageFormatter.GetCallingClassName()}.cs: {formattedMessage}\n";
+        var text = $"{time.Replace(" uur", "")}: {logType}: {MessageFormatter.GetCallingClassName()}.cs: {formattedMessage}";
 
         return WriteToTarget(text);
     }
@@ -71,6 +71,7 @@ public class Logger : ILogger
 
         if (LoggerConfiguration.UseFile)
         {
+            text += Environment.NewLine;
             _fileWriteHandler.AppendToFile(new FileWriteModel(LogFileName, FileExtension.LOG, LoggerConfiguration.FolderName, text));
         }
 
