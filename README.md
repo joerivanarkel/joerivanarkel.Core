@@ -1,16 +1,17 @@
-<div class="container">
-  <div class="row">
-    <img src="icon.png" alt="Image Description" width="50" height="50" alt="joerivanarkelPackages Icon">
+<div style="display: flex;flex-direction: column;align-items: center;justify-content: center;">
+  <div style="display: flex;align-items: center;justify-content: center;margin-bottom: 10px;">
+    <img src="icon.png" alt="Image Description" width="50" height="50" alt="joerivanarkelPackages Icon" style="margin-bottom: 10px;margin-right: 10px;">
     <h1>joerivanarkel.Packages</h1>
   </div>
 
-  <div class="row">
+  <div style="display: flex;align-items: center;justify-content: center;margin-bottom: 10px;">
     <a href="https://github.com/joerivanarkel/joerivanarkel.Packages/actions/workflows/dotnet.yml">
-      <img src="https://github.com/joerivanarkel/joerivanarkel.Packages/actions/workflows/dotnet.yml/badge.svg" alt=".NET & Deploy Package, Workflow Status Badge">
+      <img src="https://github.com/joerivanarkel/joerivanarkel.Packages/actions/workflows/dotnet.yml/badge.svg" alt=".NET & Deploy Package, Workflow Status Badge" style="margin-bottom: 10px;margin-right: 10px;">
     </a>
   </div>
 </div>
 
+<!--
 <style>
   .container {
     display: flex;
@@ -31,6 +32,7 @@
     margin-right: 10px;
   }
 </style>
+-->
 
 In this repository, the owner has published packages that they use in their own projects. These packages are available on both [NuGet](https://www.nuget.org/profiles/joerivanarkel) and in this repository as Github Packages.
 
