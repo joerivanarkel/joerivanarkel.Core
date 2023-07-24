@@ -17,7 +17,8 @@ public class Logger : ILogger
     {
         ERROR,
         WARNING,
-        INFO
+        INFO,
+        FATAL
     }
 
     /// <summary>
