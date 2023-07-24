@@ -49,6 +49,7 @@ This package is a custom logger that logs to a file.
 | --- | --- |
 | `Logger.Log(string message, LogType logType)` | Logs the given message with the given log type. |
 | `Logger.Error(Exception exception)` | Logs the given exception as an error. |
+| `Logger.Fatal(Exception exception)` | Logs the given exception as a fatal error. |
 
 ## Usage
 The logger can be used as follows:
