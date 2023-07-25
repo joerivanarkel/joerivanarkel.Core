@@ -17,7 +17,7 @@ public class LoggerTest
     {
         // Arrange
         var FileWriteHandler = A.Fake<IFileWriteHandler>();
-        var logger = new Logger();
+        var logger = new Logger(FileWriteHandler);
 
         A.CallTo(() => FileWriteHandler.WriteToFile(A<FileWriteModel>.Ignored)).Returns(true);
         var message = "Test message";
@@ -68,6 +68,24 @@ public class LoggerTest
             Assert.IsType<LoggerException>(ex);
             Assert.Equal("Message cannot be null or empty", ex.Message);
         }
+    }
+
+    [Fact]
+    public void ShouldLogFatal()
+    {
+        // Arrange
+        var FileWriteHandler = A.Fake<IFileWriteHandler>();
+        var logger = new Logger(FileWriteHandler, new LoggerConfiguration() { UseConsole = true , UseFile = false});
+
+        A.CallTo(() => FileWriteHandler.WriteToFile(A<FileWriteModel>.Ignored)).Returns(true);
+        var message = "Test message";
+        var type = LogType.FATAL;
+
+        // Act
+        var result = logger.Log(message, type);
+
+        // Assert
+        Assert.True(result);
     }
 
 }

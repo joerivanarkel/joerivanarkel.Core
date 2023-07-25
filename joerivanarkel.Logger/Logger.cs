@@ -17,7 +17,8 @@ public class Logger : ILogger
     {
         ERROR,
         WARNING,
-        INFO
+        INFO,
+        FATAL
     }
 
     /// <summary>
@@ -88,6 +89,20 @@ public class Logger : ILogger
     {
         var result = Log(exception.Message, LogType.ERROR);
         if (exception.InnerException != null) result = Log(exception.InnerException.Message, LogType.ERROR);
+
+        return result;
+    }
+
+    /// <summary>
+    /// Logs an exception as a fatal error
+    /// </summary>
+    /// <param name="exception">The exception to log</param>
+    /// <returns>True if the exception was logged successfully</returns>
+    /// <exception cref="LoggerException">Thrown when the exception is null or empty</exception>
+    public bool Fatal(System.Exception exception)
+    {
+        var result = Log(exception.Message, LogType.FATAL);
+        if (exception.InnerException != null) result = Log(exception.InnerException.Message, LogType.FATAL);
 
         return result;
     }
