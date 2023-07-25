@@ -7,6 +7,7 @@ using joerivanarkel.FileHandler.Interfaces;
 using joerivanarkel.Logger.Exception;
 using Xunit;
 using static joerivanarkel.Logger.Logger;
+using joerivanarkel.Logger.Enum;
 
 namespace joerivanarkel.Logger.Test;
 
@@ -75,7 +76,7 @@ public class LoggerTest
     {
         // Arrange
         var FileWriteHandler = A.Fake<IFileWriteHandler>();
-        var logger = new Logger(FileWriteHandler, new LoggerConfiguration() { UseConsole = true , UseFile = false});
+        var logger = new Logger(FileWriteHandler, new LoggerConfiguration() { UseConsole = UseConsoleEnum.True , UseFile = UseFileEnum.True});
 
         A.CallTo(() => FileWriteHandler.WriteToFile(A<FileWriteModel>.Ignored)).Returns(true);
         var message = "Test message";
