@@ -2,10 +2,7 @@ name: .NET & Deploy Package
 
 on:
   push:
-    branches:
-      - '*'
-  pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "development" ]
 
 env:
   NuGetDirectory: ${{ github.workspace}}/nuget
