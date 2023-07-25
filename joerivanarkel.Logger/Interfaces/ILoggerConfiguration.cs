@@ -1,9 +1,11 @@
+using joerivanarkel.Logger.Enum;
+
 namespace joerivanarkel.Logger.Interfaces;
 
-public interface ILoggerConfiguration
+public partial interface ILoggerConfiguration
 {
     string FolderName { get; set; }
     
-    bool UseConsole { get; set; }
-    bool UseFile { get; set; }
+    UseConsoleEnum UseConsole { get; set; }
+    UseFileEnum UseFile { get; set; }
 }

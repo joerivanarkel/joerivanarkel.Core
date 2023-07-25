@@ -1,3 +1,4 @@
+using joerivanarkel.Logger.Enum;
 using joerivanarkel.Logger.Interfaces;
 
 namespace joerivanarkel.Logger;
@@ -7,6 +8,7 @@ namespace joerivanarkel.Logger;
 /// </summary>
 public class LoggerConfiguration : ILoggerConfiguration
 {
+
     /// <summary>
     /// The name of the folder where the logs will be stored.
     /// </summary>
@@ -16,9 +18,14 @@ public class LoggerConfiguration : ILoggerConfiguration
     /// <summary>
     /// If the logger should use the console.
     /// </summary>
-    public bool UseConsole { get; set; } = false;
+    public UseConsoleEnum UseConsole { get; set; } = UseConsoleEnum.False;
+
+
+
     /// <summary>
     /// If the logger should use a file.
     /// </summary>
-    public bool UseFile { get; set; } = true;
+    public UseFileEnum UseFile { get; set; } = UseFileEnum.True;
+
+
 }
