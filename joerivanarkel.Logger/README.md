@@ -43,6 +43,7 @@ This package is a custom logger that logs to a file.
     - [Example 1: Basic usage](#example-1-basic-usage)
     - [Example 2: Using the configuration](#example-2-using-the-configuration)
     - [Example 3: Using the error method](#example-3-using-the-error-method)
+    - [Example 4: Using the fatal method](#example-4-using-the-fatal-method)
 
 ## Methods
 | Class.Method | Description |
@@ -70,14 +71,15 @@ The logger supports the following log types:
 | `INFO` | Informational messages. |
 | `WARNING` | Warning messages. |
 | `ERROR` | Error messages. |
+| `FATAL` | Fatal error messages. |
 
 ### Configuration
 The logger can be configured using the `LoggerConfiguration` class. The following properties can be set:
-| Property | Description |
-| --- | --- |
-| `FolderName` | The name of the folder in which the log file will be created. |
-| `UseConsole` | Whether or not the logger should also log to the console. |
-| `UseFile` | Whether or not the logger should also log to a file. |
+| Property | Description | Possible values |
+| --- | --- | --- |
+| `FolderName` | The name of the folder in which the log file will be created. | |
+| `UseConsole` | Whether or not the logger should also log to the console. | `true`<br>`false` |
+| `UseFile` | Whether or not the logger should also log to a file. | `true`<br>`false`<br>`OnFatal` |
 
 ## Examples
 
@@ -126,4 +128,22 @@ catch (Exception exception)
 
 ```log
 [2021-09-26 15:00:00] [ERROR] Something went wrong!
+```
+
+### Example 4: Using the fatal method
+```csharp
+ILogger logger = new Logger();
+
+try
+{
+    throw new Exception("Something went wrong!");
+}
+catch (Exception exception)
+{
+    logger.Fatal(exception);
+}
+```
+
+```log
+[2021-09-26 15:00:00] [FATAL] Something went wrong!
 ```

@@ -5,6 +5,7 @@ using joerivanarkel.FileHandler.Model;
 using joerivanarkel.FileHandler;
 using joerivanarkel.FileHandler.Enum;
 using joerivanarkel.FileHandler.Interfaces;
+using joerivanarkel.Logger.Enum;
 
 namespace joerivanarkel.Logger;
 
@@ -27,8 +28,10 @@ public class Logger : ILogger
     public ILoggerConfiguration LoggerConfiguration { get; set; }
 
     private string LogFileName { get; set; }
+    private string CacheText { get; set; }
     
     private readonly IFileWriteHandler _fileWriteHandler;
+
 
     public Logger() : this(new FileWriteHandler()) {}
     public Logger(IFileWriteHandler fileWriteHandler) : this(fileWriteHandler, new LoggerConfiguration()) {}
@@ -63,22 +66,6 @@ public class Logger : ILogger
         return WriteToTarget(text);
     }
 
-    private bool WriteToTarget(string text)
-    {
-        if (LoggerConfiguration.UseConsole) 
-        {
-            Console.WriteLine(text);
-        }
-
-        if (LoggerConfiguration.UseFile)
-        {
-            text += Environment.NewLine;
-            _fileWriteHandler.AppendToFile(new FileWriteModel(LogFileName, FileExtension.LOG, LoggerConfiguration.FolderName, text));
-        }
-
-        return true;
-    }
-
     /// <summary>
     /// Logs an exception
     /// </summary>
@@ -105,5 +92,52 @@ public class Logger : ILogger
         if (exception.InnerException != null) result = Log(exception.InnerException.Message, LogType.FATAL);
 
         return result;
+    }
+
+    private bool WriteToTarget(string text)
+    {
+        text += Environment.NewLine;
+        CacheText += text;
+
+        switch (LoggerConfiguration.UseConsole)
+        {
+            case UseConsoleEnum.True:
+                Console.WriteLine(text);
+                break;
+            case UseConsoleEnum.False:
+                break;
+
+            default:
+                throw new LoggerException("UseConsoleEnum is not set");
+        }
+
+        switch (LoggerConfiguration.UseFile)
+        {
+            case UseFileEnum.True:
+                _fileWriteHandler.AppendToFile(new FileWriteModel(
+                    LogFileName, 
+                    FileExtension.LOG, 
+                    LoggerConfiguration.FolderName, 
+                    text));
+                break;
+            case UseFileEnum.False:
+                break;
+            case UseFileEnum.OnFatal:
+                if (text.Contains("FATAL"))
+                {
+                    _fileWriteHandler.AppendToFile(new FileWriteModel(
+                        LogFileName, 
+                        FileExtension.LOG, 
+                        LoggerConfiguration.FolderName, 
+                        CacheText));
+                    CacheText = string.Empty;
+                }
+                break;
+            
+            default:
+                throw new LoggerException("UseFileEnum is not set");
+        }
+    
+        return true;
     }
 }
