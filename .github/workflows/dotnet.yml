@@ -105,3 +105,18 @@ jobs:
                 Write-Warning $Error[0]
               }
           }
+
+  changelog:
+    name: Hello world
+    runs-on: ubuntu-latest
+    needs: [ deploy ]
+    steps:
+      - name: Hello World
+        run: |
+          python ${{ github.workspace}}/.github/changelog.py 
+          --build-number ${{ github.run_number }}
+          --commit ${{ github.sha }}
+          --commit-message ${{ github.event.head_commit.message }}
+          --commit-author ${{ github.event.head_commit.author.name }}
+        shell: sh
+     
