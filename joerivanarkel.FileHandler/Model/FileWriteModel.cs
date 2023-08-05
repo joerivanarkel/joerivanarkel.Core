@@ -28,7 +28,7 @@ public class FileWriteModel
         Text = fileText;
     }
 
-    public bool IsValid()
+    internal bool IsValid()
     {
         if (string.IsNullOrEmpty(Name)) throw new ValidationException($"Name, ${Name} is empty");
         if (string.IsNullOrEmpty(Extension)) throw new ValidationException($"Extension, ${Extension} is empty");

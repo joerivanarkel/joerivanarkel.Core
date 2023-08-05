@@ -7,5 +7,6 @@
       "joerivanarkel.UserSecrets.Test": "Test",
       "joerivanarkel.Logger.Test": "Test",
       "joerivanarkel.FileHandler.Test": "Test",
+      "joerivanarkel.ObjectStorage.Test": "Test"
     },
 }

@@ -37,6 +37,13 @@ This package which handles read and write operations to files.
 # Contents
 - [Methods](#methods)
 - [Usage](#usage)
+  - [Known limitations](#known-limitations)
+- [Examples](#examples)
+  - [Example 1: Basic usage of the reader](#example-1-basic-usage-of-the-reader)
+  - [Example 2: Basic usage of the writer](#example-2-basic-usage-of-the-writer)
+  - [Example 3: Basic usage of the writer with the append method](#example-3-basic-usage-of-the-writer-with-the-append-method)
+  - [Example 4: Checking if a file exists](#example-4-checking-if-a-file-exists)
+  - [Example 5: Checking if a directory exists](#example-5-checking-if-a-directory-exists)
 
 ## Methods
 | Class.Method | Description |
@@ -65,6 +72,9 @@ FileWriteHandler.WriteAllTextToFile(new FileWriteModel
     Text = "Hello World!"
 });
 ```
+
+### Known limitations
+- The reader and writer are only able to read and write files from folders that are in the root folder.
 
 ## Examples
 
