@@ -109,7 +109,9 @@ jobs:
     steps:
       - name: ls
         shell: pwsh
-        run: ls ${{ github.workspace}}
+        run: |
+          echo "Listing files in ${{ github.workspace }}:"
+          ls ${{ github.workspace }}
       - name: Run changelog script
         run: |
           python ../changelog.py 
