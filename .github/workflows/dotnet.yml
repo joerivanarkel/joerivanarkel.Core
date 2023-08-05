@@ -113,7 +113,7 @@ jobs:
     steps:
       - name: Run changelog script
         run: |
-          echo ls
+          ls
           python ../changelog.py 
           --build-number ${{ github.run_number }}
           --commit ${{ github.sha }}
