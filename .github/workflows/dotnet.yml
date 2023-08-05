@@ -108,6 +108,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ls
+        shell: pwsh
         run: ls ${{ github.workspace}}
       - name: Run changelog script
         run: |
