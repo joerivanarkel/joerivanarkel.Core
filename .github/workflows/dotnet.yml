@@ -111,9 +111,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: [ build ]
     steps:
+      - name: ls
+        run: ls
       - name: Run changelog script
         run: |
-          ls
           python ../changelog.py 
           --build-number ${{ github.run_number }}
           --commit ${{ github.sha }}
