@@ -106,12 +106,9 @@ jobs:
   changelog:
     name: changelog
     runs-on: ubuntu-latest
-    needs: [ build ]
     steps:
       - name: ls
-        run: |
-          cd ${{ github.workspace}}/.github
-          ls
+        run: ls -la
       - name: Run changelog script
         run: |
           python ../changelog.py 
