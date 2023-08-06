@@ -1,5 +1,5 @@
-$nugetDirectory = param($nugetDirectory)
-$nugetApiKey = param($nugetApiKey)
+$nugetDirectory = $args[0]
+$nugetApiKey = $args[1]
 
 $files = Get-ChildItem $nugetDirectory -Recurse -Include *.nupkg
 foreach($file in $files) {
