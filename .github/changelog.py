@@ -5,9 +5,10 @@ import getopt
 # Build Number | ${{ github.run_number }} | --build-number
 
 build_number = 0
-commit = ""
+commits = []
 commit_message = ""
 commit_author = ""
+time = ""
 modified_files = []
 added_files = []
 removed_files = []
@@ -51,19 +52,21 @@ def extract_value_list(argv, arg):
     return variable
 
 def get_variables(argv):
-    global build_number, commit, commit_message, commit_author, modified_files, added_files, removed_files
+    global build_number, commit, commit_message, commit_author, time, modified_files, added_files, removed_files
 
     # Parse command line arguments
 
     for arg in argv:
         if arg == "--build-number":
             build_number = extract_value(argv, arg)
-        elif arg == "--commit":
-            commit = extract_value(argv, arg)
+        elif arg == "--commits":
+            commit = extract_value_list(argv, arg)
         elif arg == "--commit-message":
             commit_message = extract_value(argv, arg)
         elif arg == "--commit-author":
             commit_author = extract_value(argv, arg)
+        elif arg == "--time":
+            time = extract_value(argv, arg)
         elif arg == "--modified-files":
             modified_files = extract_value_list(argv, arg)
         elif arg == "--added-files":
@@ -75,7 +78,7 @@ def get_variables(argv):
     # Print variables
 
 def write_to_changelog():
-    global build_number, commit, commit_message, commit_author, modified_files, added_files, removed_files
+    global build_number, commit, commit_message, commit_author, time, modified_files, added_files, removed_files
 
     # Write to changelog
     # open("CHANGELOG.md", "x")
