@@ -43,3 +43,8 @@ Commit: 2e56b0dc7c7dc2ddcfe5d7726b90daba04cab9b1
 Commit Message: Update changelog for build 96
 Commit Author: joerivanarkel
 
+## Build 98
+Commit: 803b6d0940999e8063d41f3e1a2718ddf33e7f38
+Commit Message: Update changelog for build 97
+Commit Author: joerivanarkel
+
