@@ -3,15 +3,16 @@ name: .NET & Deploy Package
 on:
   push:
     branches: [ main, development ]
-    if: 'github.event.head_commit.author.username != "github-actions[bot]"'
+    
 
 env:
   NuGetDirectory: ${{ github.workspace}}/nuget
 
 
 jobs:
+    
   build:
-
+    if: 'github.event.head_commit.author.username != "github-actions[bot]"'
     runs-on: ubuntu-latest
 
     steps:
@@ -106,6 +107,7 @@ jobs:
 
   changelog:
     name: changelog
+    if: 'github.event.head_commit.author.username != "github-actions[bot]"'
     runs-on: ubuntu-latest
     defaults:
       run:
