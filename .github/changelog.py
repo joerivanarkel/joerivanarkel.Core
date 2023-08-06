@@ -2,6 +2,7 @@ import sys
 import getopt
 import os
 import json
+from datetime import datetime
 
 def get_env_variables():
     payload = os.environ.get('GITHUB_EVENT_PATH')
@@ -16,13 +17,14 @@ def write_to_changelog(event_data):
     try:
         build_number = sys.argv[1]
     except:
-        build_number = "0"
+        # current time right now not in event_data
+        time = datetime.now().strftime("%Y/%m/%d %H:%M:%S")
+        build_number = "Unknown Build Number" 
     
     with open("doc/CHANGELOG.md", "a") as changelog:
         changelog.write("## Build " + build_number + new_line)
         changelog.write("Sender: " + event_data["sender"]["login"] + new_line)
         changelog.write("Branch: " + event_data["ref"].replace("refs/heads/", "") + new_line)
-        changelog.write(new_line)
         
         for commit in event_data["commits"]:
             changelog.write("### Commit: " + commit["message"] + new_line)
@@ -30,7 +32,6 @@ def write_to_changelog(event_data):
             changelog.write("Commit Message: " + commit["message"] + new_line)
             changelog.write("Commit Author: " + commit["author"]["name"] + new_line)
             changelog.write("Timestamp: " + commit["timestamp"] + new_line)
-            changelog.write(new_line)
         
         
 
