@@ -107,17 +107,19 @@ jobs:
     name: changelog
     runs-on: ubuntu-latest
     steps:
-      - name: ls
-        shell: pwsh
+      - name: Find changelog script
         run: |
-          echo "Listing files in ${{ github.workspace }}:"
-          ls ${{ github.workspace }}
+          cd ${{ github.workspace }}
+          changelog_script=$(find . -name "changelog.py" -print -quit)
+          echo "Found changelog script: $changelog_script"
+          echo "Path to script: $(dirname $changelog_script)"
+        shell: bash
+
       - name: Run changelog script
         run: |
-          python changelog.py 
+          python $changelog_script 
           --build-number ${{ github.run_number }}
           --commit ${{ github.sha }}
           --commit-message ${{ github.event.head_commit.message }}
           --commit-author ${{ github.event.head_commit.author.name }}
-        shell: sh
-     
+        shell: bash
