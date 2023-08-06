@@ -114,7 +114,7 @@ jobs:
           ls ${{ github.workspace }}
       - name: Run changelog script
         run: |
-          python ../changelog.py 
+          python changelog.py 
           --build-number ${{ github.run_number }}
           --commit ${{ github.sha }}
           --commit-message ${{ github.event.head_commit.message }}
