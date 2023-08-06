@@ -19,7 +19,7 @@ def write_to_changelog(event_data):
     except:
         # current time right now not in event_data
         time = datetime.now().strftime("%Y/%m/%d %H:%M:%S")
-        build_number = "Unknown Build Number" 
+        build_number = "Unknown Build Number" + " " + time
     
     with open("doc/CHANGELOG.md", "a") as changelog:
         changelog.write("## Build " + build_number + new_line)
