@@ -44,9 +44,9 @@ jobs:
 
     - name: Run changelog script
       run: |
-          python version.py ${{ github.ref }}
+          python ./.github/version.py ${{ github.ref }}
       shell: pwsh
-      working-directory: .github
+      working-directory: home/runner/work/joerivanarkel.Packages/joerivanarkel.Packages
 
     # Install the .NET SDK indicated in the global.json file
     - name: Setup .NET
