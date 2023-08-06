@@ -460,3 +460,8 @@ pushpackage.md
 .vscode/tasks.json
 
 test/*
+.github/test.ps1
+.github/tempCodeRunnerFile.ps1
+
+doc/*
+temp*.ps1

@@ -5,5 +5,10 @@ namespace joerivanarkel.FileHandler.Enum;
 /// </summary>
 public enum FileExtension
 {
-    LOG
+    LOG,
+    JSON,
+    XML,
+    CSV,
+    TXT,
+    MD
 }
