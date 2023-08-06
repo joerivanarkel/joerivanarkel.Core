@@ -8,7 +8,7 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 
         <PackageId>joerivanarkel.FileHandler</PackageId>
-        <Version>1.0.5.0132</Version>
+        <Version>1.0.6.0133</Version>
         <Authors>Joeri van Arkel</Authors>
         <Company>vanarkel</Company>
         <RepositoryUrl>
