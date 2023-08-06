@@ -45,13 +45,8 @@ jobs:
     - name: Run changelog script
       run: |
           python version.py ${{ github.ref }}
-
-    - name: Add pre-release version
-      if: ${{ !startsWith(github.ref, 'refs/heads/main') }}        
-      run: |
-        find . -name '*.csproj' ! -name '*Test*.csproj' | while read file; do
-            sed -i "s/<\/Version>/-build${{ github.run_number }}<\/Version>/" "$file"
-        done
+      shell: pwsh
+      working-directory: .github
 
     # Install the .NET SDK indicated in the global.json file
     - name: Setup .NET
