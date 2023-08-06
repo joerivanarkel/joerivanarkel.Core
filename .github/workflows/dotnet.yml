@@ -81,28 +81,13 @@ jobs:
       - name: Publish to NuGet
         shell: pwsh
         run: |
-          $files=Get-ChildItem "${{ env.NuGetDirectory }}" -Recurse -Include *.nupkg
-          foreach($file in $files) {
-              try {
-                dotnet nuget push $file --api-key "${{ secrets.NUGET_APIKEY }}" --source "https://api.nuget.org/v3/index.json" --skip-duplicate
-              }
-              catch {
-                Write-Warning $Error[0]
-              }
-            }
+          .\publish_nuget.ps1 -nugetDirectory ${{ env.NuGetDirectory }} -nugetApiKey ${{ secrets.NUGET_APIKEY }}
       - name: Publish to Github Packages
         if: ${{ startsWith(github.ref, 'refs/heads/main') }} 
         shell: pwsh
+        working-directory: .github
         run: |
-          $files=Get-ChildItem "${{ env.NuGetDirectory }}" -Recurse -Include *.nupkg
-          foreach($file in $files) {
-              try {
-                dotnet nuget push $file --api-key "${{ secrets.PACKAGES_APIKEY }}" --source "https://nuget.pkg.github.com/joerivanarkel/index.json" --skip-duplicate
-              }
-              catch {
-                Write-Warning $Error[0]
-              }
-          }
+          .\publish_github.ps1 -nugetDirectory ${{ env.NuGetDirectory }}  -packagesApiKey ${{ secrets.PACKAGES_APIKEY }}
 
   changelog:
     name: changelog
