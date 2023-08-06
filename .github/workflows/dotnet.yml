@@ -107,6 +107,7 @@ jobs:
     name: changelog
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Find changelog script
         run: |
           cd ${{ github.workspace}}
