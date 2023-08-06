@@ -140,11 +140,7 @@ jobs:
 
       - name: Run changelog script
         run: |
-          python changelog.py `
-          --build-number ${{ needs.build.outputs.build_number }} `
-          --commits ${{ github.event.commits }} `
-          --commit-message ${{ github.event.head_commit.message }} `
-          --commit-author ${{ github.event.head_commit.author.name }} `
+          python changelog.py ${{ needs.build.outputs.build_number }} 
 
         shell: pwsh
 
