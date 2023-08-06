@@ -109,17 +109,17 @@ jobs:
     steps:
       - name: Find changelog script
         run: |
-          cd ${{ github.workspace }}
-          changelog_script=$(find . -name "changelog.py" -print -quit)
-          echo "Found changelog script: $changelog_script"
-          echo "Path to script: $(dirname $changelog_script)"
-        shell: bash
+          cd $env:GITHUB_WORKSPACE
+          $changelog_script = Get-ChildItem -Path . -Recurse -Include changelog.py -File | Select-Object -First 1
+          Write-Host "Found changelog script: $($changelog_script.FullName)"
+          Write-Host "Path to script: $(Split-Path -Path $changelog_script.FullName)"
+        shell: pwsh
 
       - name: Run changelog script
         run: |
-          python $changelog_script 
-          --build-number ${{ github.run_number }}
-          --commit ${{ github.sha }}
-          --commit-message ${{ github.event.head_commit.message }}
-          --commit-author ${{ github.event.head_commit.author.name }}
-        shell: bash
+          python $env:changelog_script.FullName `
+          --build-number $env:GITHUB_RUN_NUMBER `
+          --commit $env:GITHUB_SHA `
+          --commit-message $env:GITHUB_EVENT_HEAD_COMMIT_MESSAGE `
+          --commit-author $env:GITHUB_EVENT_HEAD_COMMIT_AUTHOR_NAME
+        shell: pwsh
