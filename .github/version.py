@@ -69,3 +69,5 @@ for root, dirs, files in os.walk("."):
             version_element.text = new_version(branch_name, major, minor, patch, build)
 
             tree.write(file_path)
+        else:
+            print("Skipping", file)
