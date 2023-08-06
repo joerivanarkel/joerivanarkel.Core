@@ -1,4 +1,4 @@
-python .github/changelog.py `
+python ./.github/changelog.py `
     --build-number 13 `
     --commit 12 `
     --commit-message "Hello World" `

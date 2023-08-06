@@ -1,39 +1,22 @@
 import sys
 import getopt
+import os
+import json
 
 # Variables
 # Build Number | ${{ github.run_number }} | --build-number
 
 build_number = 0
 commits = []
-commit_message = ""
-commit_author = ""
-time = ""
+commit_message = []
+commit_author = []
+time = []
 modified_files = []
 added_files = []
 removed_files = []
 
 
 def extract_value(argv, arg):
-    index = argv.index(arg) + 1
-
-    variable = argv[index]
-
-    index += 1
-
-    if index >= len(argv):
-        return variable
-
-    while argv[index][0] != "-":
-        variable += ' ' + argv[index]
-        index += 1
-        if index >= len(argv):
-            break
-
-    return variable
-
-
-def extract_value_list(argv, arg):
     index = argv.index(arg) + 1
     
     variable = [argv[index]]
@@ -68,11 +51,11 @@ def get_variables(argv):
         elif arg == "--time":
             time = extract_value(argv, arg)
         elif arg == "--modified-files":
-            modified_files = extract_value_list(argv, arg)
+            modified_files = extract_value(argv, arg)
         elif arg == "--added-files":
-            added_files = extract_value_list(argv, arg)
+            added_files = extract_value(argv, arg)
         elif arg == "--removed-files":
-            removed_files = extract_value_list(argv, arg)
+            removed_files = extract_value(argv, arg)
             
 
     # Print variables
@@ -95,11 +78,20 @@ def write_to_changelog():
         changelog.write("Removed Files: " + str(removed_files) + new_line)
         changelog.write(new_line)
         
-    
+def get_env_variables():
+    payload = os.environ.get('GITHUB_EVENT_PATH')
+    with open(payload, 'r') as f:
+        event_data = json.load(f)
+        
+    # write event_data to file
+    with open("event_data.json", "w+") as f:
+        json.dump(event_data, f, indent=4)
+        
         
         
 
 if __name__ == "__main__":
+    get_env_variables()
 
     get_variables(sys.argv)
 
@@ -109,3 +101,4 @@ if __name__ == "__main__":
     print("Commit Author:", commit_author)
     
     write_to_changelog()
+    
