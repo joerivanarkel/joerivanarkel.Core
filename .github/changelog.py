@@ -15,7 +15,7 @@ def write_to_changelog(event_data):
     new_line = "<br>\n"
     
     with open("doc/CHANGELOG.md", "a") as changelog:
-        changelog.write("## Build " + sys.argv[1] + new_line)
+        changelog.write("## Build " + sys.argv[0] + new_line)
         changelog.write("Sender: " + event_data["sender"]["login"] + new_line)
         changelog.write("Branch: " + event_data["ref"].replace("refs/heads/", "") + new_line)
         changelog.write(new_line)
