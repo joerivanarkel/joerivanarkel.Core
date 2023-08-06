@@ -39,6 +39,12 @@ jobs:
     needs: [ build ]
     steps:
     - uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.PACKAGES_APIKEY }}
+
+    - name: Run changelog script
+      run: |
+          python version.py ${{ github.ref }}
 
     - name: Add pre-release version
       if: ${{ !startsWith(github.ref, 'refs/heads/main') }}        
