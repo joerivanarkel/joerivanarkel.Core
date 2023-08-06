@@ -44,6 +44,7 @@ jobs:
 
     - name: Run changelog script
       id: run_changelog
+      if: 'github.event.head_commit.author.username != ''github-actions[bot]'''
       run: |
           python ./.github/version.py ${{ github.ref }}
       shell: pwsh
