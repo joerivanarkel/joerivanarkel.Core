@@ -128,4 +128,8 @@ jobs:
           --commit-author ${{ github.event.head_commit.author.name }}
         shell: pwsh
 
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - name: Commit changelog
+        if: steps.auto-commit-action.outputs.changes_detected == 'true'
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update changelog for build ${{ github.run_number }}
