@@ -113,7 +113,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PACKAGES_APIKEY }}
       - name: Find changelog script
         run: |
           $changelog_script = Get-ChildItem -Path . -Recurse -Include changelog.py -File | Select-Object -First 1
