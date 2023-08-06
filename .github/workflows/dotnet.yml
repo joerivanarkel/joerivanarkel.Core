@@ -114,7 +114,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Find changelog script
         run: |
-          cd ${{ github.workspace}}
           $changelog_script = Get-ChildItem -Path . -Recurse -Include changelog.py -File | Select-Object -First 1
           Write-Host "Found changelog script: $($changelog_script.FullName)"
           Write-Host "Path to script: $(Split-Path -Path $changelog_script.FullName)"
