@@ -58,7 +58,7 @@ def write_to_changelog():
     # Write to changelog
     # open("CHANGELOG.md", "x")
     
-    with open("CHANGELOG.md", "a") as changelog:
+    with open("doc/CHANGELOG.md", "a") as changelog:
         changelog.write("## Build " + build_number + "\n")
         changelog.write("Commit: " + commit + "\n")
         changelog.write("Commit Message: " + commit_message + "\n")

@@ -462,3 +462,6 @@ pushpackage.md
 test/*
 .github/test.ps1
 .github/tempCodeRunnerFile.ps1
+
+doc
+temp*.ps1
