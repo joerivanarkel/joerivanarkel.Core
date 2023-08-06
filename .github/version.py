@@ -39,6 +39,9 @@ def get_version(components):
     
     return major, minor, patch, build
 
+def set_output(name, value):
+    with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
+        print(f'{name}={value}', file=fh)
 
 def new_version(branch_name, major, minor, patch, build):
     # if build contains a dash, it is a prerelease version
@@ -52,7 +55,9 @@ def new_version(branch_name, major, minor, patch, build):
         build = int(build) + 1
         new_version = f"{major}.{minor}.{patch}.{build:04d}-{branch_name}"
     
+    set_output("build_number", build)
     return new_version
+
 
 for root, dirs, files in os.walk("."):
     for file in files:
