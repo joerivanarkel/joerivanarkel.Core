@@ -109,7 +109,7 @@ jobs:
     steps:
       - name: Find changelog script
         run: |
-          cd $env:GITHUB_WORKSPACE
+          cd ${{ github.workspace}}
           $changelog_script = Get-ChildItem -Path . -Recurse -Include changelog.py -File | Select-Object -First 1
           Write-Host "Found changelog script: $($changelog_script.FullName)"
           Write-Host "Path to script: $(Split-Path -Path $changelog_script.FullName)"
@@ -117,7 +117,7 @@ jobs:
 
       - name: Run changelog script
         run: |
-          python $env:changelog_script.FullName `
+          python changelog.py `
           --build-number $env:GITHUB_RUN_NUMBER `
           --commit $env:GITHUB_SHA `
           --commit-message $env:GITHUB_EVENT_HEAD_COMMIT_MESSAGE `
