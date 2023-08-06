@@ -13,9 +13,13 @@ def get_env_variables():
 
 def write_to_changelog(event_data):
     new_line = "<br>\n"
+    try:
+        build_number = sys.argv[1]
+    except:
+        build_number = "0"
     
     with open("doc/CHANGELOG.md", "a") as changelog:
-        changelog.write("## Build " + sys.argv[0] + new_line)
+        changelog.write("## Build " + build_number + new_line)
         changelog.write("Sender: " + event_data["sender"]["login"] + new_line)
         changelog.write("Branch: " + event_data["ref"].replace("refs/heads/", "") + new_line)
         changelog.write(new_line)
