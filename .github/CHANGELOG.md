@@ -23,3 +23,8 @@ Commit: 1e6c8089d6ed6855d15d985dfb1e819c602d46f6
 Commit Message: Update changelog for build 92
 Commit Author: joerivanarkel
 
+## Build 94
+Commit: 5a6e132b2d82289aef903a3f32886f60228af24c
+Commit Message: Update changelog for build 93
+Commit Author: joerivanarkel
+
