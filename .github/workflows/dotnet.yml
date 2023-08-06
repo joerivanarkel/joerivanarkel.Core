@@ -74,7 +74,7 @@ jobs:
         with:
           name: nuget
           path: ${{ env.NuGetDirectory }}
-          
+
       - uses: actions/checkout@v2
         with:
           token: ${{ secrets.PACKAGES_APIKEY }}
@@ -86,13 +86,12 @@ jobs:
         shell: pwsh
         working-directory: .github
         run: |
-          .\publish_nuget.ps1 -nugetDirectory ${{ env.NuGetDirectory }} -nugetApiKey ${{ secrets.NUGET_APIKEY }}
+          ./.github/publish_nuget.ps1 -nugetDirectory ${{ env.NuGetDirectory }} -nugetApiKey ${{ secrets.NUGET_APIKEY }}
       - name: Publish to Github Packages
         if: ${{ startsWith(github.ref, 'refs/heads/main') }} 
         shell: pwsh
-        working-directory: .github
         run: |
-          .\publish_github.ps1 -nugetDirectory ${{ env.NuGetDirectory }}  -packagesApiKey ${{ secrets.PACKAGES_APIKEY }}
+          ./.github/publish_github.ps1 -nugetDirectory ${{ env.NuGetDirectory }}  -packagesApiKey ${{ secrets.PACKAGES_APIKEY }}
 
   changelog:
     name: changelog
