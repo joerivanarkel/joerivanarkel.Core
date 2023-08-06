@@ -65,6 +65,8 @@ def write_to_changelog():
         changelog.write("Commit Author: " + commit_author + "\n")
         changelog.write("\n")
         
+    
+        
         
 
 if __name__ == "__main__":
