@@ -48,15 +48,12 @@ jobs:
           python ./.github/version.py ${{ github.ref }}
       shell: pwsh
 
-    - name: Commit changelog
-      uses: stefanzweifel/git-auto-commit-action@v4
-      if: 'github.event.head_commit.author.username != ''github-actions[bot]'''
+    - uses: actions/upload-artifact@v3
       with:
-          commit_message: Update changelog for build ${{ steps.run_changelog.outputs.build_number }}
-          commit_user_name: github-actions[bot]
-          commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
-          commit_author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
-          
+            name: repo
+            if-no-files-found: error
+            retention-days: 7
+            path: ${{ github.workspace }}
 
 
   create_package:
@@ -135,9 +132,10 @@ jobs:
         working-directory: .github
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/download-artifact@v3
         with:
-          token: ${{ secrets.PACKAGES_APIKEY }}
+          name: repo
+          path: ${{ github.workspace }}
 
       - name: Run changelog script
         run: |
