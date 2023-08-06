@@ -33,5 +33,5 @@ def write_to_changelog(event_data):
 if __name__ == "__main__":
     event_data = get_env_variables()
 
-    write_to_changelog()
+    write_to_changelog(event_data)
     
