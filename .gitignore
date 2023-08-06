@@ -463,5 +463,5 @@ test/*
 .github/test.ps1
 .github/tempCodeRunnerFile.ps1
 
-doc
+doc/*
 temp*.ps1
