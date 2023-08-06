@@ -46,7 +46,6 @@ jobs:
       run: |
           python ./.github/version.py ${{ github.ref }}
       shell: pwsh
-      working-directory: home/runner/work/joerivanarkel.Packages/joerivanarkel.Packages
 
     # Install the .NET SDK indicated in the global.json file
     - name: Setup .NET
