@@ -74,6 +74,10 @@ jobs:
         with:
           name: nuget
           path: ${{ env.NuGetDirectory }}
+          
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.PACKAGES_APIKEY }}
 
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v3
