@@ -43,7 +43,7 @@ def get_variables(argv):
         if arg == "--build-number":
             build_number = extract_value(argv, arg)
         elif arg == "--commits":
-            commit = extract_value_list(argv, arg)
+            commit = extract_value(argv, arg)
         elif arg == "--commit-message":
             commit_message = extract_value(argv, arg)
         elif arg == "--commit-author":
@@ -78,22 +78,10 @@ def write_to_changelog():
         changelog.write("Removed Files: " + str(removed_files) + new_line)
         changelog.write(new_line)
         
-def get_env_variables():
-    payload = os.environ.get('GITHUB_EVENT_PATH')
-    with open(payload, 'r') as f:
-        event_data = json.load(f)
-        
-    # write event_data to file
-    with open("event_data.json", "w+") as f:
-        json.dump(event_data, f, indent=4)
-        
-        
         
 
 if __name__ == "__main__":
     get_env_variables()
-
-    get_variables(sys.argv)
 
     print("Build Number:", build_number)
     print("Commit:", commit)

@@ -76,3 +76,11 @@ for root, dirs, files in os.walk("."):
             tree.write(file_path)
         else:
             print("Skipping", file)
+
+payload = os.environ.get('GITHUB_EVENT_PATH')
+with open(payload, 'r') as f:
+    event_data = json.load(f)
+
+# write event_data to file
+with open("event_data.json", "w+") as f:
+    json.dump(event_data, f, indent=4)
