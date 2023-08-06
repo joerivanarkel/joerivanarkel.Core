@@ -80,6 +80,7 @@ jobs:
 
       - name: Publish to NuGet
         shell: pwsh
+        working-directory: .github
         run: |
           .\publish_nuget.ps1 -nugetDirectory ${{ env.NuGetDirectory }} -nugetApiKey ${{ secrets.NUGET_APIKEY }}
       - name: Publish to Github Packages
