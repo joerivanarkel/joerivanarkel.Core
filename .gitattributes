@@ -1,1 +1,3 @@
 .github/* linguist-detectable
+.github/changelog.py linguist-detectable
+.github/version.py linguist-detectable
