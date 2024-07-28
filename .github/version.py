@@ -48,7 +48,7 @@ def new_version(branch_name, major, minor, patch, build):
     build = build.split("-")[0]
     
     if branch_name == "main" or branch_name == "master":
-        patch = str(int(patch) + 1)
+        # patch = str(int(patch) + 1)
         build = int(build) + 1
         new_version = f"{major}.{minor}.{patch}.{build:04d}"
     else:
