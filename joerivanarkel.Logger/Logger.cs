@@ -28,7 +28,7 @@ public class Logger : ILogger
     public ILoggerConfiguration LoggerConfiguration { get; set; }
 
     private string LogFileName { get; set; }
-    private string CacheText { get; set; }
+    private string? CacheText { get; set; }
     
     private readonly IFileWriteHandler _fileWriteHandler;
 
@@ -64,6 +64,28 @@ public class Logger : ILogger
         var text = $"{time.Replace(" uur", "")}: {logType}: {MessageFormatter.GetCallingClassName()}.cs: {formattedMessage}";
 
         return WriteToTarget(text);
+    }
+
+    /// <summary>'
+    /// Logs a message
+    /// </summary>
+    /// <param name="message">The message to log</param>
+    /// <returns>True if the message was logged successfully</returns>
+    /// <exception cref="LoggerException">Thrown when the message is null or empty</exception>
+    public bool Info(string message)
+    {
+        return Log(message, LogType.INFO);
+    }
+
+    /// <summary>
+    /// Logs a warning
+    /// </summary>
+    /// <param name="message">The warning to log</param>
+    /// <returns>True if the warning was logged successfully</returns>
+    /// <exception cref="LoggerException">Thrown when the message is null or empty</exception>
+    public bool Warning(string message)
+    {
+        return Log(message, LogType.WARNING);
     }
 
     /// <summary>
