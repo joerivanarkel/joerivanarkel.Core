@@ -39,7 +39,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        token: ${{ secrets.PACKAGES_APIKEY }}
+        token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Run version update script
       id: run_changelog
@@ -62,7 +62,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        token: ${{ secrets.PACKAGES_APIKEY }}
+        token: ${{ secrets.GITHUB_TOKEN }}
 
     # Install the .NET SDK indicated in the global.json file
     - name: Setup .NET
